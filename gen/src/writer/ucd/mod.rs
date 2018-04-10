@@ -21,6 +21,7 @@ mod name;
 mod normal;
 mod segment;
 mod segment_tests;
+mod unihan;
 
 use crate::writer::utils::clean_dir;
 
@@ -38,4 +39,5 @@ pub fn generate() {
     normal::generate(&clean_dir("unic/ucd/normal/tables"));
     segment::generate(&clean_dir("unic/ucd/segment/tables"));
     segment_tests::generate(&clean_dir("unic/ucd/segment/tests/tables"));
+    unihan::generate(&clean_dir("unic/ucd/unihan/tables"));
 }

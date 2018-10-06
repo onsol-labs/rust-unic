@@ -37,6 +37,7 @@ pub use unic_ucd_ident as ident;
 pub use unic_ucd_name as name;
 pub use unic_ucd_normal as normal;
 pub use unic_ucd_segment as segment;
+pub use unic_ucd_unihan as unihan;
 
 pub use crate::version::UnicodeVersion;
 
@@ -79,6 +80,8 @@ pub use crate::name::Name;
 pub use crate::normal::CanonicalCombiningClass;
 
 pub use crate::segment::{GraphemeClusterBreak, SentenceBreak, WordBreak};
+
+pub use crate::unihan::{definition_of, mandarin_of, simplified_variant_of, traditional_variant_of};
 
 mod pkg_info;
 pub use crate::pkg_info::{PKG_DESCRIPTION, PKG_NAME, PKG_VERSION};

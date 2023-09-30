@@ -184,6 +184,11 @@ pub struct DerivedCoreProperties {
     ///
     /// [UAX31]: http://unicode.org/reports/tr41/tr41-21.html#UAX31
     pub xid_continue: BTreeSet<char>,
+    /// Used to determine programming identifiers, as described in
+    /// [Unicode Standard Annex #31, "Unicode Identifier and Pattern Syntax"][UAX31]
+    ///
+    /// [UAX31]: http://unicode.org/reports/tr41/tr41-21.html#UAX31
+    pub in_cb: BTreeSet<char>,
 }
 
 impl FromStr for DerivedCoreProperties {
@@ -221,6 +226,7 @@ impl FromStr for DerivedCoreProperties {
                 "ID_Continue" => props.id_continue.extend(range),
                 "XID_Start" => props.xid_start.extend(range),
                 "XID_Continue" => props.xid_continue.extend(range),
+                "InCB" => props.in_cb.extend(range),
                 prop => panic!("Unsupported DerivedCoreProperty `{}`", prop),
             }
         }

@@ -14,3 +14,10 @@
 
 
 `wget -P external/unicode/ucd https://unicode.org/Public/UCD/latest/ucd/UCD.zip && unzip external/unicode/ucd/UCD.zip -d external/unicode/ucd/data && wget -P external/unicode/ucd https://unicode.org/Public/UCD/latest/ucd/Unihan.zip && unzip external/unicode/ucd/Unihan.zip -d external/unicode/ucd/data/Unihan`
+
+
+run `cargo run --bin unic-gen`
+
+to test:
+run `cargo run --bin unic-inspector <emoji>`
+run `cargo run --bin unic-echo <emoji>`

@@ -70,6 +70,9 @@ pub struct PropList {
     pub ids_binary_operator: BTreeSet<char>,
 
     /// Used in Ideographic Description Sequences.
+    pub ids_unary_operator: BTreeSet<char>,
+
+    /// Used in Ideographic Description Sequences.
     pub ids_trinary_operator: BTreeSet<char>,
 
     /// Format control characters which have specific functions
@@ -102,6 +105,12 @@ pub struct PropList {
 
     /// Used in deriving the `Lowercase` property.
     pub other_lowercase: BTreeSet<char>,
+
+    /// Used in deriving the `Math Continue` property.
+    pub ids_compat_math_continue_operator: BTreeSet<char>,
+
+    /// Used in deriving the `Math Start` property.
+    pub ids_compat_math_start_operator: BTreeSet<char>,
 
     /// Used in deriving the `Math` property.
     pub other_math: BTreeSet<char>,
@@ -214,8 +223,11 @@ impl FromStr for PropList {
                 "Noncharacter_Code_Point" => props.noncharacter_code_point.extend(range),
                 "Other_Grapheme_Extend" => props.other_grapheme_extend.extend(range),
                 "IDS_Binary_Operator" => props.ids_binary_operator.extend(range),
+                "IDS_Unary_Operator" => props.ids_unary_operator.extend(range),
                 "IDS_Trinary_Operator" => props.ids_trinary_operator.extend(range),
                 "Radical" => props.radical.extend(range),
+                "ID_Compat_Math_Continue" => props.ids_compat_math_continue_operator.extend(range),
+                "ID_Compat_Math_Start" => props.ids_compat_math_start_operator.extend(range),
                 "Unified_Ideograph" => props.unified_ideograph.extend(range),
                 "Other_Default_Ignorable_Code_Point" => {
                     props.other_default_ignorable_code_point.extend(range)

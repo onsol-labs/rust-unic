@@ -1,6 +1,6 @@
 [package]
 name = "unic-bidi"
-version = "0.9.0"
+version = "0.9.0-all"
 edition = "2018"
 authors = ["The UNIC Project Developers"]
 repository = "https://github.com/open-i18n/rust-unic/"
@@ -23,12 +23,12 @@ bench_it = []
 [dependencies]
 matches = "0.1"
 serde = { version = ">=0.8, <2.0", optional = true, features = ["derive"] }
-unic-ucd-bidi = { path = "../ucd/bidi/", version = "0.9.0" }
+unic-ucd-bidi = { path = "../ucd/bidi/", version = "0.9.0-all" }
 
 [dev-dependencies]
 serde_test = ">=0.8, <2.0"
-unic-char-property = { path = "../char/property/", version = "0.9.0" }
-unic-ucd-version = { path = "../ucd/version/", version = "0.9.0" }
+unic-char-property = { path = "../char/property/", version = "0.9.0-all" }
+unic-ucd-version = { path = "../ucd/version/", version = "0.9.0-all" }
 
 [badges]
 maintenance = { status = "actively-developed" }

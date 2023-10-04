@@ -17,6 +17,7 @@
 //! * <https://www.unicode.org/reports/tr29/#Table_Word_Break_Property_Values>
 
 use unic_char_property::TotalCharProperty;
+use unic_emoji_char::is_extended_pictographic;
 
 char_property! {
     /// Represents the Unicode character
@@ -301,6 +302,27 @@ char_property! {
             human => "Emoji Base and Glue After ZWJ",
         }
 
+        /// A rule in the WB algorithm makes use of that new property value to prevent word breaks
+        /// within runs of whitespace characters.
+        ///
+        /// See <http://unicode.org/versions/Unicode11.0.0/>
+        WSegSpace {
+            abbr => WSS,
+            long => WSegSpace,
+            human => "Whitespace characters",
+        }
+
+        /// Extended_Pictographic
+        /// FIXME:
+        ///   Remove this.
+        ///   Extended Pictographic is not a real word break type, we need to define this
+        ///   because of a mistake in design in unic_segment_grapheme.
+        ExtPict {
+            abbr => EP,
+            long => ExtPict,
+            human => "Extended Pictographic",
+        }
+
         /// All other characters
         Other {
             abbr => XX,
@@ -350,7 +372,11 @@ mod data {
 impl WordBreak {
     /// Find the character `Word_Break` property value.
     pub fn of(ch: char) -> WordBreak {
-        data::WORD_BREAK_TABLE.find_or_default(ch)
+        if is_extended_pictographic(ch) {
+            WordBreak::ExtPict
+        } else {
+            data::WORD_BREAK_TABLE.find_or_default(ch)
+        }
     }
 }
 
@@ -385,10 +411,10 @@ mod tests {
         assert_eq!(WB::of('\u{07C0}'), WB::Numeric);
         assert_eq!(WB::of('\u{085F}'), WB::Other);
         assert_eq!(WB::of('\u{0860}'), WB::ALetter);
-        assert_eq!(WB::of('\u{0870}'), WB::Other);
-        assert_eq!(WB::of('\u{089F}'), WB::Other);
+        assert_eq!(WB::of('\u{0870}'), WB::ALetter);
+        assert_eq!(WB::of('\u{089F}'), WB::Extend);
         assert_eq!(WB::of('\u{08A0}'), WB::ALetter);
-        assert_eq!(WB::of('\u{089F}'), WB::Other);
+        assert_eq!(WB::of('\u{089F}'), WB::Extend);
         assert_eq!(WB::of('\u{08FF}'), WB::Extend);
 
         // Default ET
